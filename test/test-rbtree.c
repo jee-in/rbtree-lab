@@ -21,7 +21,6 @@ void test_init(void) {
 void test_insert_single(const key_t key) {
   rbtree *t = new_rbtree();
   node_t *p = rbtree_insert(t, key);
-  
   assert(p != NULL);
   assert(t->root == p);
   assert(p->key == key);
@@ -249,7 +248,7 @@ static bool color_traverse(const node_t *p, const color_t parent_color,
   }
   int next_depth = ((p->color == RBTREE_BLACK) ? 1 : 0) + black_depth;
   return color_traverse(p->left, p->color, next_depth, nil) &&
-        color_traverse(p->right, p->color, next_depth, nil);
+         color_traverse(p->right, p->color, next_depth, nil);
 }
 
 void test_color_constraint(const rbtree *t) {
@@ -375,10 +374,10 @@ int main(void) {
   test_erase_root(128);
   test_find_erase_fixed();
   test_minmax_suite();
-  //test_to_array_suite();
-  //test_distinct_values();
-  //test_duplicate_values();
-  //test_multi_instance();
-  //test_find_erase_rand(10000, 17);
+  test_to_array_suite();
+  test_distinct_values();
+  test_duplicate_values();
+  test_multi_instance();
+  test_find_erase_rand(10000, 17);
   printf("Passed all tests!\n");
 }
